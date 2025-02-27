@@ -66,8 +66,7 @@ console.log("Exercise 7: isZeroOrHundred", isZeroOrHundred)
 // Step 2: Declare a variable `isTrue` and check if `flag` is true.
 // Step 3: Log the result
 
-let flag: boolean = true;
-flag = 12 > 10;
+let flag: boolean = 12 > 10;
 let isTrue: boolean = flag === true;
 console.log("Exercise 8: isTrue", isTrue)
 
