@@ -107,10 +107,16 @@ function getStudents(students: Student[]): string[] {
 // );
 
 const studentsNames = getStudents(studentsArr);
-console.log("stedentsNames", studentsNames);
+//console.log("stedentsNames", studentsNames);
 
 //
 
 //Exercise Three
 // Declare a function "sortStudents" that receive students array result from the previous exercise
 // and sort them by ascending
+
+function sortStudents(studentsNames: string[]): string[] {
+  return studentsNames.sort();
+}
+const sortedNames = sortStudents(studentsNames);
+console.log("sortNames:", sortedNames);
