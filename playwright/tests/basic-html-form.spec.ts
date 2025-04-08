@@ -17,42 +17,56 @@ const results = {
 
 const fillFields = async (page: Page, resultsObj: Results) => {
   // Locate and fill username field
-  const usernameInput = page.locator('xpath=//input[@name="username"]');
-  await expect(usernameInput).toBeVisible();
-  await usernameInput.fill(resultsObj.username);
-  await expect(usernameInput).toHaveValue(resultsObj.username);
+  await test.step("Enter username", async () => {
+    const usernameInput = page.locator('xpath=//input[@name="username"]');
+    await expect(usernameInput).toBeVisible();
+    await usernameInput.fill(resultsObj.username);
+    await expect(usernameInput).toHaveValue(resultsObj.username);
+  });
   // Locate and fill password field
-  const passwordInput = page.locator(`xpath=//input[@name="password"]`);
-  await expect(passwordInput).toBeVisible();
-  await passwordInput.fill(resultsObj.password);
-  await expect(passwordInput).toHaveValue(resultsObj.password);
+  await test.step("Enter password", async () => {
+    const passwordInput = page.locator(`xpath=//input[@name="password"]`);
+    await expect(passwordInput).toBeVisible();
+    await passwordInput.fill(resultsObj.password);
+    await expect(passwordInput).toHaveValue(resultsObj.password);
+  });
   // Locate and fill textare field
-  const textAreaInput = page.locator(
-    `xpath=//*[contains(text(), 'Comments...')]`
-  );
-  await expect(textAreaInput).toBeVisible();
-  await textAreaInput.fill(resultsObj.comments);
-  await expect(textAreaInput).toHaveValue(resultsObj.comments);
+  await test.step("Fill comments field", async () => {
+    const textAreaInput = page.locator(
+      `xpath=//*[contains(text(), 'Comments...')]`
+    );
+    await expect(textAreaInput).toBeVisible();
+    await textAreaInput.fill(resultsObj.comments);
+    await expect(textAreaInput).toHaveValue(resultsObj.comments);
+  });
   // Locate and check the checkbox
-  const checkboxEl = page.locator('xpath=//input[@value="cb2"]');
-  await expect(checkboxEl).toBeVisible();
-  await checkboxEl.check();
-  await expect(checkboxEl).toBeChecked();
+  await test.step("Select checkbox value", async () => {
+    const checkboxEl = page.locator('xpath=//input[@value="cb2"]');
+    await expect(checkboxEl).toBeVisible();
+    await checkboxEl.check();
+    await expect(checkboxEl).toBeChecked();
+  });
   // Locate and check the radio button
-  const radioItem = page.locator('xpath=//input[@value="rd1"]');
-  await expect(radioItem).toBeVisible();
-  await radioItem.check();
-  await expect(radioItem).toBeChecked();
+  await test.step("Select radio button", async () => {
+    const radioItem = page.locator('xpath=//input[@value="rd1"]');
+    await expect(radioItem).toBeVisible();
+    await radioItem.check();
+    await expect(radioItem).toBeChecked();
+  });
   // Locate and select the drop down
-  const dropdownEl = page.locator('xpath=//select[@name="dropdown"]');
-  await expect(dropdownEl).toBeVisible();
-  await dropdownEl.selectOption(resultsObj.dropDownValue);
-  await expect(dropdownEl).toHaveValue(resultsObj.dropDownValue);
+  await test.step("Select drop downn option", async () => {
+    const dropdownEl = page.locator('xpath=//select[@name="dropdown"]');
+    await expect(dropdownEl).toBeVisible();
+    await dropdownEl.selectOption(resultsObj.dropDownValue);
+    await expect(dropdownEl).toHaveValue(resultsObj.dropDownValue);
+  });
   // Locate and upload a file
-  const uploadButton = page.locator(`xpath=//input[@type="file"]`);
-  const filePath = path.resolve(__dirname, "./tests.txt");
-  await expect(uploadButton).toBeVisible();
-  await uploadButton.setInputFiles(filePath);
+  await test.step("Upload a file", async () => {
+    const uploadButton = page.locator(`xpath=//input[@type="file"]`);
+    const filePath = path.resolve(__dirname, "./tests.txt");
+    await expect(uploadButton).toBeVisible();
+    await uploadButton.setInputFiles(filePath);
+  });
 };
 
 test.describe("Basic html form", () => {
